@@ -41,9 +41,9 @@ int main(){
                 printf(">>> Añadir Nuevo Contacto <<<\n");
                 leer_contacto(&new_contact);
                 
-                if (agregar_contacto(&agenda, new_contact) == 0) {
-                    printf("Contacto añadido de forma exitosa.\n");
-                } 
+                // Corrección: Se eliminó el 'if' porque la función es void
+                agregar_contacto(&agenda, new_contact);
+                printf("Contacto añadido de forma exitosa.\n");
                 break;
             
             case 2: { // Buscar contacto
@@ -60,7 +60,8 @@ int main(){
                         printf ("Ingresa el nombre del contacto: ");
                         scanf("%s", search_name); 
                         
-                        pos_contacto = buscar_contacto_nombre(&agenda, search_name); 
+                        // Corrección: Nombre de función ajustado a agenda.h
+                        pos_contacto = buscar_contacto(&agenda, search_name); 
                         
                         if (pos_contacto != -1) {
                             printf("\n-- Contacto Encontrado --\n");
@@ -74,7 +75,8 @@ int main(){
                         printf ("Ingresa el número telefónico: ");
                         scanf("%s", search_phone); 
                         
-                        pos_contacto = buscar_contacto_numero(&agenda, search_phone);
+                        // Corrección: Nombre de función ajustado a agenda.h
+                        pos_contacto = buscar_contacto_x_telefono(&agenda, search_phone);
                         
                         if (pos_contacto != -1) {
                             printf("\n-- Contacto Encontrado --\n");
@@ -121,7 +123,8 @@ int main(){
                 printf(">>> Guardar Agenda <<<\n");
                 printf("Ingrese el nombre del archivo (ej: datos.txt): ");
                 scanf("%s", filename);
-                guardar_contactos(filename, &agenda); 
+                // Corrección: Se pasa 'agenda' por valor (sin &) para coincidir con el prototipo
+                guardar_contactos(filename, agenda); 
                 break;
 
             case 5: // Cargar contactos
