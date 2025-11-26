@@ -1,5 +1,7 @@
 #include "agenda.h"
 
+// Hola.
+
 /**
  * Esta función se encarga de iniciar el número de contactos a cero
  */
